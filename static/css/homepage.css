@@ -1,0 +1,215 @@
+/* Default styles */
+
+.card {
+
+  
+
+  border-radius: 1rem;
+
+  background-color: white;
+
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+}
+
+
+
+.soft-ui-color {
+
+  --soft-ui-color: #f1f2f6;
+
+}
+
+
+
+.soft-ui-shadow {
+
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.5);
+
+}
+
+
+
+.container {
+
+  max-width: 100%;
+
+  margin: 20px auto;
+
+  margin-right: 20px;
+
+  padding: 20px;
+
+  background-color: white;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+  transition: 0.3s;
+
+}
+
+
+
+.container:hover {
+
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.card-content {
+
+  display: flex;
+
+  flex-direction: row;
+
+}
+
+
+
+.card-text {
+
+  flex: 1;
+
+  padding: 10px;
+
+}
+
+
+
+#card-textarea, #content {
+
+  width: 90%;
+
+  height: 200px;
+
+  padding: 10px;
+
+  resize: none;
+
+  overflow: auto;
+
+  border-color: aqua;
+
+}
+
+
+
+.download-button {
+
+  display: inline-block;
+
+  padding: 12px 20px;
+
+  background-color: #007bff;
+
+  color: #fff;
+
+  font-size: 16px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  border-radius: 6px;
+
+  border: none;
+
+  cursor: pointer;
+
+  margin-top: 20px;
+
+}
+
+
+
+.download-button:hover {
+
+  background-color: #0069d9;
+
+}
+
+
+
+/* Responsive styles */
+
+@media only screen and (max-width: 768px) {
+
+  .container {
+
+    flex-direction: column;
+
+  }
+
+
+
+  #card-textarea, #content {
+
+    width: 100%;
+
+  }
+
+  #ldownloadEngSrtBtn{
+
+    margin-top: 10px;
+
+  }
+
+}
+
+
+
+@media only screen and (max-width: 576px) {
+
+  .container {
+
+    padding: 10px;
+
+    margin: 10px auto;
+
+  }
+
+
+
+  .card-text {
+
+    padding: 5px;
+
+  }
+
+
+
+  #card-textarea, #content {
+
+    height: 100px;
+
+  }
+
+
+
+  .download-btn {
+
+    padding: 5px;
+
+  }
+
+  #ldownloadEngSrtBtn{
+
+    margin-top: 10px;
+
+  }
+
+  .resetButton{
+
+    margin-top:10px;
+
+  }
+
+}
+
+#filestatus{
+
+  display:none;
+
+}

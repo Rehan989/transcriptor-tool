@@ -1,0 +1,15 @@
+APScheduler==3.10.0
+
+Flask==2.2.3
+
+openai_whisper==20230124
+
+torch
+
+whisper==1.1.10
+
+ffmpeg-python==0.2.0
+gtts
+googletrans==4.0.0-rc1
+pydub
+python-docx

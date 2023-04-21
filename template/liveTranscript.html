@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio to Text</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.1/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal_flat.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal_rounded.css') }}"/>
+    <script src="https://cdn.tailwindcss.com/3.2.4"></script>
+    <!-- Add this to your <head> element -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-##########" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/liveTranscription.css') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+  </head>
+  
+  <body >
+    {% include "header.html" %}
+    
+    
+    <div class="bg-gray-200 flex items-center justify-center">
+      <div class="w-full max-w-sm p-6" id="filechoose">
+        <div class="card p-6 soft-ui-color soft-ui-shadow">
+          <h1 class="text-2xl mb-6 font-bold text-gray-800 text-center">Live Transcription</h1>
+          <div class="justify-center mx-10">
+            <select>
+              <option value="en-us" >English (US)</option>
+              <option value="en-in">English (IN)</option>
+              <option value="en-uk">English (UK)</option>
+              <option value="es-ES">Spain</option>
+              <option value="de-DE">Germany</option>
+            </select>
+          </div>
+          <div class="flex mt-8 justify-center">
+            <div class="flex justify-center mt-4">
+              <button id="startBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2 text-sm">
+                <svg class="h-4 w-4 inline mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3.5 3.5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2h-1v3.586a1 1 0 01-.293.707l-2 2a1 1 0 01-1.414 0L8 15.414l-1.293 1.293a1 1 0 01-1.414 0l-2-2a1 1 0 01-.293-.707V11h-.5a1.5 1.5 0 01-1.5-1.5v-6a1.5 1.5 0 011.5-1.5zm2 1a.5.5 0 00-.5.5v6a.5.5 0 00.5.5h8a.5.5 0 00.5-.5v-6a.5.5 0 00-.5-.5h-8z" clip-rule="evenodd" />
+                </svg>
+                  Start Recording
+              </button>
+              <button id="stopBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded text-sm">
+                  <svg class="h-4 w-4 inline mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 10.586V7a1 1 0 00-2 0v5.586l-2.293-2.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 12.586z" clip-rule="evenodd" />
+                  </svg>
+                  Stop Recording
+              </button>
+            </div>
+          </div>
+          <span id="SubtitleStatus" style="margin-top:5%;" class="inline-block animate-pulse"></span>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card-content">
+        <div class="card-text">
+          
+          <h1><strong>Transcribed Text</strong> </h1>
+          
+          <textarea id="card-textarea" class="mt-6 text-gray-800" name="text"></textarea>
+        </div>
+      </div>
+      {% if logged_in %}
+        <a href="/download-audio-txt" style="display:none;"class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="ldownloadTxtBtn">Download as .txt</a>
+
+        <a href="/download-audio-txt" style="display:none;" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="ldownloadSrtBtn">Download as .srt</a>
+
+        <a href="/send-as-mail-audio"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  id="sendMailBtn">Send as Mail</a>
+
+        <button style="display:none" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  id="resetButton" onclick="resetTextField()">
+          Reset
+        </button>
+      
+      {% else %}
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  class="downloadTxtBtn" onclick="openModal()">
+          Download as .txt
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  class="downloadSrtBtn" onclick="openModal()">
+        Download as .srt
+        </button>
+      {% endif %}
+ 
+
+<!-- Modal -->
+    {% include 'modal.html' %}
+    {% include 'send_rec_mail_dialog.html' %}
+
+</div>
+{% if sent %}
+  {% include 'message_dialog_modal.html' %}
+  {% endif %}
+
+{% include "info.html" %}
+{% include "footer.html" %}
+{% include 'back_message_modal.html' %}
+<script src="{{ url_for('static', filename='js/liveTranscription.js') }}"></script>
+<script src="{{ url_for('static', filename='js/daypilot-modal-3.15.1.min.js') }}"></script>
+  </body>
+</html>

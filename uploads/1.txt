@@ -1,0 +1,18 @@
+Home page-
+1. Add bigger banner
+2. Show features of our store - COD AVAILABLE ,  24/7 SUPPORT , FAST DELIVERY
+3. Feature best seller product 2 row and 3 column
+4. Existing banner rahega
+
+Shop page-
+1. Have 3 column for the product and equal space both side
+2. Add add to cart and buy now button instead of view more
+
+Product Page-
+1. View cart button sahi se kaam kare abhi add to cart add krte he view cart pr aajate hai. Hume aesa krna hai ki add to cart dabaye and fir hum page ko exit na kre
+
+Header-
+1. make size bigger
+
+Additional which should be already there
+1. Checout should be there and buy now button with it because we mentioned that it should be ecomm website

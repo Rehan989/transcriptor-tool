@@ -1,0 +1,160 @@
+.card {
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+.soft-ui-color {
+  --soft-ui-color: #f1f2f6;
+}
+
+.soft-ui-shadow {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2), -4px -4px 8px rgba(255, 255, 255, 0.5);
+}
+.container {
+  max-width: 100%;
+  margin: 20px auto;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-text {
+  flex: 1;
+  padding: 10px;
+}
+
+#card-textarea {
+  width: 90%;
+  height: 200px;
+  padding: 10px;
+  resize: none;
+  overflow: auto;
+  border-color: aqua;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.download-btn:hover {
+  background-color: #2e8b57;
+}
+
+.download-link {
+  display: none;
+}
+.download-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.download-button:hover {
+  background-color: #0069d9;
+}
+#filechoose{
+  margin-left: 50px;
+}
+#nav{
+  margin-left: 30px;
+}
+#dialog_sign_up_btn{
+  margin-left: 5px;
+}
+
+.fas.fa-microphone {
+color: rgb(70, 5, 250);/* Change the color to red */
+}
+#listening{
+display: none;
+}
+select {
+  width: 200px;
+  height: 30px;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  background-color: #f1f1f1;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+option {
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+}
+
+option:hover {
+  background-color: #e6e6e6;
+}
+#stopBtn{
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  #card-textarea {
+    width: 100%;
+  }
+  #restBuuton{
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .container {
+    padding: 10px;
+    margin: 10px auto;
+  }
+
+  .card-text {
+    padding: 5px;
+  }
+
+  #card-textarea {
+    height: 100px;
+  }
+
+  .download-btn {
+    padding: 5px;
+  }
+  #restBuuton{
+    margin-top: 10px;
+  }
+}

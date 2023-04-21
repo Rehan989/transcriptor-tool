@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Audio to Text</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.1/tailwind.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+
+    <script src="https://cdn.tailwindcss.com/3.2.4"></script>
+
+    <!-- Add this to your <head> element -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-##########"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal_flat.css') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modal_rounded.css') }}" />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</head>
+
+
+
+<body>
+
+    {% include "header.html" %}
+
+
+
+
+
+    <div class="bg-gray-200 flex items-center justify-center">
+
+        <div class="w-full max-w-xl p-6" id="filechoose">
+
+            <div class="card p-6 soft-ui-color soft-ui-shadow">
+
+                <h1 class="text-2xl mb-6 font-bold text-gray-800 text-center">Text File to Media</h1>
+                <form id="upload-form">
+
+                    <!-- language select -->
+                    <div class="text-center my-2">
+                        <select
+                            class="form-select bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            name="language" aria-label="Select Language" required>
+                            <option selected value="">Select Language</option>
+                            <option value="en">English</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="it">Italian</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="mb-4">
+
+
+
+                        <label id="file-label" for="audio-file"
+                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-blue-50 ">
+
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+
+                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                    </path>
+                                </svg>
+
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                        class="font-semibold">Choose File</span>
+
+                                <p class="text-xs text-gray-500 dark:text-gray-400">.txt, .docx,
+                                    .srt </p>
+
+                            </div>
+
+                            <input id="audio-file" type="file" name="file" class="hidden" accept=".txt,.docx,.srt" />
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+
+                    </div>
+
+
+
+                    <div class="class">
+
+                        <h1 class="text-xl mt-4 font-bold text-gray-800 text-center">OR</h1>
+
+                    </div>
+
+                    <h1><strong>Enter Text Input</strong> </h1>
+
+
+
+                    <textarea id="content" oninput="autoSize(this)" class="mt-6 text-gray-800" name="content" {% if not
+                        logged_in %} oncopy="return false;" onpaste="return false;" {% else %} oncopy="return false;"
+                        onpaste="return false;" {% endif %}></textarea>
+
+                    <div class="text-center my-2">
+
+                    </div>
+
+
+                    <div class="my-2">
+                        <select
+                            class="form-select bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            name="volume" aria-label="gender" required>
+                            <option selected value="">Select Voice volume</option>
+                            <option value="normal">Normal</option>
+                            <option value="fast">High</option>
+                            <option value="slow">low</option>
+                        </select>
+                        <select
+                        class="my-1 form-select bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        name="speed" aria-label="speed" required>
+                        <option selected value="">Select Voice Speed</option>
+                        <option selected value="1.0">Normal</option>
+                        <option value="1.25">1.25</option>
+                        <option value="1.5">1.5</option>
+                        <option value="1.75">1.75</option>
+                        <option value="2.00">2.00</option>
+                    </select>
+                        <select
+                            class="form-select bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            name="translation" aria-label="No Transalation">
+                            <option selected value="0">No Transalation</option>
+                            <option value="en">English</option>
+                            <option value="en-in">English(Indian Accent Output)</option>
+                            <option value="en-au">English(Australia Accent Output)</option>
+                            <option value="fr">French</option>
+                            <option value="fr-ca">French(Canada Accent Output)</option>
+                            <option value="de">German</option>
+                            <option value="it">Italian</option>
+                        </select>
+
+                    </div>
+                    <div class="text-center my-2">
+
+                    </div>
+
+                    <div class="text-center">
+
+                        <button id="uploadStatus" type="submit"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "
+                            style="display:none;">
+
+                            Upload
+
+                        </button>
+
+
+                    </div>
+
+
+
+                </form>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                <ul class="messages">
+
+                    {% for category, message in messages %}
+
+                    <li class="{{ category }}">{{ message }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+                {% endif %}
+
+                {% endwith %}
+
+                <span id="filestatus" class="inline-block animate-pulse">Typing...</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="card-content">
+
+
+
+            <div class="card-text">
+
+
+
+                <h1><strong>Output</strong> </h1>
+
+
+                <div class="my-1" id="audio" style="display:none;">
+                    <audio controls id="audioElem">
+                        <source id="audioSource" src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+        {% if logged_in %}
+        <a id="sendToEmail" style="display:none;"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >Send to email</a>
+        {% endif %}
+    </div>
+
+
+
+    <!-- Modal -->
+
+    {% if sent %}
+
+    {% include 'message_dialog_modal.html' %}
+
+    {% endif %}
+
+    {% include 'modal.html' %}
+
+    {% include 'back_message_modal.html' %}
+
+    {% include 'lottie_dialog_modal.html' %}
+
+    {% include 'send_email_dialog.html' %}
+
+
+
+
+
+
+
+
+
+    </div>
+
+    {% include "info.html" %}
+
+    {% include "footer.html" %}
+
+    <script src="{{ url_for('static', filename='js/textToSpeech.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/daypilot-modal-3.15.1.min.js') }}"></script>
+
+
+
+</body>
+
+</html>
